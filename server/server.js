@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const app = express();
+var auth = require('./routes/auth,js');
 
 
 // configuration ===============================================================
@@ -32,9 +33,9 @@ app.use(passport.session()); // persistent login sessions
 
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes/auth.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-
+app.use('/auth', auth);
 
 app.listen(3000, function () {
   console.log('App started on port 3000');

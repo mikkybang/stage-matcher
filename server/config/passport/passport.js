@@ -46,7 +46,7 @@ module.exports = function(passport) {
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, email, password, done) {
+        function(req, email, password, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             connection.query("SELECT * FROM users WHERE email = ?",[email], function(err, rows) {
@@ -88,7 +88,7 @@ module.exports = function(passport) {
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) { // callback with email and password from our form
+        function(req, email, password, done) { // callback with email and password from our form
             connection.query("SELECT * FROM users WHERE email = ?",[email], function(err, rows){
                 if (err)
                     return done(err);
